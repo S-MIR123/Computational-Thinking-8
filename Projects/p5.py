@@ -26,20 +26,47 @@ window.tracer(0)
 
 # Section 2: Setup
 # TODO - create your player character
-s1 = create_sprite("eead6ff453f215ddf320de83619337bd",100, 100)
-s2 = create_sprite("7eebebc78b933555a1c1ec00493ef6a8",400, 300)
-# TODO - set your background
-set_background("Desert_Background-1162")
+s1 = create_sprite("sodacan",0, -200)
+
+# TODO - set your background 
+# set_background()
 # TODO - set the starting value for your variable
 
 # Section 3: Controls
 # TODO - define your controls
+def move_up():
+	s1.setheading(90)
+	s1.forward(20)
+
+   	 
+def move_down():
+	s1.setheading(270)
+	s1.forward(20)
+
+def move_left():
+	s1.setheading(180)
+	s1.forward(20)
+
+    
+def move_right():    
+	s1.setheading(0)
+	s1.forward(20)
+
+def reset():
+	s1.goto(0,0)
+window.onkeypress(reset, "t")
+window.onkeypress(move_left, "a")
+window.onkeypress(move_right, "d")
+window.onkeypress(move_up, "w")
+window.onkeypress(move_down, "s") #WASD to move
+
 # TODO - pick keys for each control
 
 # Section 4: Game Loop
 window.listen()
 timer = 0
-while True:
+obstacles = []
+while True: 
 	time.sleep(0.1)
 	timer += 1  
 	 
@@ -47,8 +74,18 @@ while True:
  	# TODO - code for automatic actions
 
 
+	if timer % 10 == 0:
+		y_position = random.randint(-250, 250)
+		s2 = create_sprite("basketball",300, y_position)
+		s2.setheading(180)
+		obstacles.append(s2)
 
-
+	for s2 in obstacles:
+		s2.forward(10)
+		if get_distance(s1, s2) < 50:
+			lives -= 1
+			s2.hideturtle()
+			obstacles.remove(s2)
 
 
 	window.update()

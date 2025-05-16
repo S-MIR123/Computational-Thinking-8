@@ -29,26 +29,22 @@ s2 = create_sprite("character2",0,200)
 def move_up():
 	s1.setheading(90)
 	s1.forward(10)
-	s2.setheading(90)
-	s2.forward(10)
+
    	 
 def move_down():
 	s1.setheading(270)
 	s1.forward(10)
-	s2.setheading(270)
-	s2.forward(10)
+
     
 def move_left():
 	s1.setheading(180)
 	s1.forward(10)
-	s2.setheading(180)
-	s2.forward(10)
+
     
 def move_right():    
 	s1.setheading(0)
 	s1.forward(10)
-	s2.setheading(0)
-	s2.forward(10)
+
 	
 def draw():
 	s1.pendown()
