@@ -65,6 +65,7 @@ window.onkeypress(move_down, "s") #WASD to move
 # Section 4: Game Loop
 window.listen()
 timer = 0
+lives = 3
 obstacles = []
 while True: 
 	time.sleep(0.1)
@@ -74,7 +75,7 @@ while True:
  	# TODO - code for automatic actions
 
 
-	if timer % 10 == 0:
+	if timer % 5 == 0:
 		y_position = random.randint(-250, 250)
 		s2 = create_sprite("basketball",300, y_position)
 		s2.setheading(180)
@@ -84,14 +85,16 @@ while True:
 		s2.forward(10)
 		if get_distance(s1, s2) < 50:
 			lives -= 1
+			print(f"Uh oh! you have lost a life! lives remaining: {lives}" )
+			s1.write(f"lives remaining: {lives}", font = ("Arial" , 10, "normal"))
 			s2.hideturtle()
 			obstacles.remove(s2)
+	if lives == 0:
+		break
 
 
 	window.update()
 
-	# if :
-	# 	break
 	
 
 print("Game Over")
